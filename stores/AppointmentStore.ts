@@ -4,8 +4,11 @@ export const AppointmentStore = defineStore("AppointmentStore", {
         timeInterval: 30 as Readonly<number>,
         weeklyAppointments: [] as Appointment[],
         timeSlots: [] as String[],
+        freeSlots: new Set as Set<Date>
     }),
-
+    getters: {
+        getFreeSlots: (state) => state.freeSlots.size
+    },
 
     actions: {
         setAppointment(from: Date, to: Date) {
@@ -15,6 +18,12 @@ export const AppointmentStore = defineStore("AppointmentStore", {
         setTimeSlot(slot: String) {
             this.timeSlots.push(slot)
         },
+        setFreeSlot(slot: Date) {
+            this.freeSlots.add(slot)
+        },
+        removeFreeSlot(slot: Date) {
+            this.freeSlots.delete(slot)
+        }
     },
 })
 

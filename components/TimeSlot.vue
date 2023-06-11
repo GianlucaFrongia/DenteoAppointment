@@ -11,6 +11,12 @@ const props = defineProps<{
 }>()
 const date: Date = new Date("2021-01-0" + props.dayNumber + "T" + props.time)
 
+watch(isTaken, (state) => {
+    if (state) {
+        store.removeFreeSlot(date)
+    }
+})
+
 onBeforeMount(() => {
     checkIfTaken(store.weeklyAppointments)
     if (props.time === "12:00:00" || props.time === "12:30:00") {
@@ -18,11 +24,16 @@ onBeforeMount(() => {
     }
 })
 
+onMounted(() => {
+    if (isTaken.value === false) {
+        store.setFreeSlot(date)
+    }
+})
+
 function setAppointment() {
     const toDate = new Date(date.getTime() + store.timeInterval * 60000)
     store.setAppointment(date, toDate)
     isTaken.value = true
-
 }
 
 function checkIfTaken(weeklyAppointments: Appointment[]): void {
