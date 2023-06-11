@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
+  ssr: true,
+  app: { baseURL: "/DenteoAppointment/" },
   modules: [
     [
       '@pinia/nuxt',
@@ -9,6 +10,7 @@ export default defineNuxtConfig({
       },
     ],
   ],
+
   devtools: { enabled: true },
   imports: {
     dirs: ['stores'],
