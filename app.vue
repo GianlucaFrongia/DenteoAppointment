@@ -53,9 +53,7 @@ body {
 }
 
 .freeslots {
-  position: absolute;
-  right: 100px;
-
+  height: 100px;
 }
 
 #Fill {

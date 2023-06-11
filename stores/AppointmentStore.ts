@@ -1,6 +1,6 @@
 export const AppointmentStore = defineStore("AppointmentStore", {
     state: () => ({
-        weekDays: { "Montag": 4, "Dienstag": 5, "Mittwoch": 6, "Donnerstag": 7 } as Readonly<{}>,
+        weekDays: { "Montag": 4, "Dienstag": 5, "Mittwoch": 6, "Donnerstag": 7, "Freitag": 8 } as Readonly<{}>,
         timeInterval: 30 as Readonly<number>,
         weeklyAppointments: [] as Appointment[],
         timeSlots: [] as String[],
