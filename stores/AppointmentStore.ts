@@ -1,14 +1,9 @@
-interface Appointment {
-    from: Date;
-    to: Date;
-}
-
 export const AppointmentStore = defineStore("AppointmentStore", {
     state: () => ({
-        wochenTage: { "Montag": 4, "Dienstag": 5, "Mittwoch": 6, "Donnerstag": 7 },
+        weekDays: { "Montag": 4, "Dienstag": 5, "Mittwoch": 6, "Donnerstag": 7 } as Readonly<{}>,
+        timeInterval: 30 as Readonly<number>,
         weeklyAppointments: [] as Appointment[],
         timeSlots: [] as String[],
-        options: { weekday: "long" } as {},
     }),
 
 
@@ -20,11 +15,6 @@ export const AppointmentStore = defineStore("AppointmentStore", {
         setTimeSlot(slot: String) {
             this.timeSlots.push(slot)
         },
-
-        getCurrentDaySlot(day: String) {
-
-            return
-        }
     },
 })
 
