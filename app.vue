@@ -36,7 +36,7 @@ const weeklyAppointments = [
 onBeforeMount(() => {
   for (let hour = startTime; hour < endTime; hour++) {
     for (let min = 0; min < 60 / store.timeInterval; min++) {
-      store.setTimeSlot(('0' + hour).slice(-2) + ":" + ('0' + min * store.timeInterval).slice(-2) + ":00")
+      store.setTimeSlot(('0' + hour).slice(-2) + ":" + ('0' + min * store.timeInterval).slice(-2))
     }
   }
 

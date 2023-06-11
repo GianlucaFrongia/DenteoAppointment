@@ -9,7 +9,7 @@ const props = defineProps<{
     time: String
     dayNumber: Number
 }>()
-const date: Date = new Date("2021-01-0" + props.dayNumber + "T" + props.time)
+const date: Date = new Date("2021-01-0" + props.dayNumber + "T" + props.time + ":00")
 
 watch(isTaken, (state) => {
     if (state) {
@@ -19,7 +19,7 @@ watch(isTaken, (state) => {
 
 onBeforeMount(() => {
     checkIfTaken(store.weeklyAppointments)
-    if (props.time === "12:00:00" || props.time === "12:30:00") {
+    if (props.time === "12:00" || props.time === "12:30") {
         isTaken.value = true
     }
 })
