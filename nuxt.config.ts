@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
+  ssr: true,
   modules: [
     [
       '@pinia/nuxt',
@@ -8,7 +8,7 @@ export default defineNuxtConfig({
         autoImports: ['defineStore', 'acceptHMRUpdate'],
       },
     ],
-  ],  
+  ],
   devtools: { enabled: true },
   imports: {
     dirs: ['stores'],
