@@ -9,10 +9,10 @@
     </text>
   </svg>
   <div class="container">
-    <section class="day" v-for="(dayNumber, day) in store.weekDays">
-      <h2>{{ day }}</h2>
+    <section class="day" v-for="day in store.searchRange">
+      <h2>{{ displayWeekDay(day) }}</h2>
       <div>
-        <TimeSlot :key="index" :dayNumber="dayNumber" :time="time" v-for="(time, index) in store.timeSlots" />
+        <TimeSlot :key="index" :day="day" :time="time" v-for="(time, index) in store.timeSlots" />
       </div>
     </section>
 
@@ -20,10 +20,9 @@
 </template>
 
 <script setup lang="ts">
-const store = AppointmentStore();
-const startTime = 8;
-const endTime = 18;
-
+const store = AppointmentStore()
+const startTime = 8
+const endTime = 18
 const weeklyAppointments = [
   /*Montag*/{ from: "2021-01-04T10:00:00", to: "2021-01-04T10:30:00" },
   /*Dienstag*/ { from: "2021-01-05T11:00:00", to: "2021-01-05T11:30:00" },
@@ -31,7 +30,9 @@ const weeklyAppointments = [
   /*Mittwoch*/{ from: "2021-01-06T10:00:00", to: "2021-01-06T10:30:00" },
   /*Mittwoch*/{ from: "2021-01-06T11:00:00", to: "2021-01-06T12:30:00" },
   /*Mittwoch*/{ from: "2021-01-06T17:30:00", to: "2021-01-06T18:00:00" },
-];
+]
+
+
 
 onBeforeMount(() => {
   for (let hour = startTime; hour < endTime; hour++) {
@@ -44,6 +45,12 @@ onBeforeMount(() => {
     store.setAppointment(new Date(weeklyAppointments[i].from), new Date(weeklyAppointments[i].to))
   }
 })
+
+
+const displayWeekDay = (day: number): String => {
+  const weekDay = Intl.DateTimeFormat("de-DE", { weekday: "long" }).format(new Date("2021-01-" + day))
+  return weekDay
+}
 </script>
 
 <style>
