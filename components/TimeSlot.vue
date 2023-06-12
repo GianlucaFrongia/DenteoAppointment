@@ -22,9 +22,6 @@ onBeforeMount(() => {
     if (props.time === "12:00" || props.time === "12:30") {
         isTaken.value = true
     }
-})
-
-onMounted(() => {
     if (isTaken.value === false) {
         store.setFreeSlot(date)
     }
