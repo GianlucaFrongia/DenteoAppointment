@@ -1,27 +1,34 @@
+type AppointmentStoreState = {
+    searchRange: number[]
+    timeInterval: number
+    weeklyAppointments: Appointment[]
+    timeSlots: String[]
+    freeSlots: Set<Date>
+}
+
 export const AppointmentStore = defineStore("AppointmentStore", {
-    state: () => ({
-        weekDays: { "Montag": 4, "Dienstag": 5, "Mittwoch": 6, "Donnerstag": 7, "Freitag": 8 } as Readonly<{}>,
-        timeInterval: 30 as Readonly<number>,
-        weeklyAppointments: [] as Appointment[],
-        timeSlots: [] as String[],
-        freeSlots: new Set as Set<Date>
+    state: (): AppointmentStoreState => ({
+        searchRange: [4, 5, 6, 7, 8],
+        timeInterval: 30,
+        weeklyAppointments: [],
+        timeSlots: [],
+        freeSlots: new Set
     }),
     getters: {
-        getFreeSlots: (state) => state.freeSlots.size
+        getFreeSlots: (state): number => state.freeSlots.size
     },
 
     actions: {
-        setAppointment(from: Date, to: Date) {
+        setAppointment(from: Date, to: Date): void {
             this.weeklyAppointments.push({ from: from, to: to })
         },
-
-        setTimeSlot(slot: String) {
+        setTimeSlot(slot: String): void {
             this.timeSlots.push(slot)
         },
-        setFreeSlot(slot: Date) {
+        setFreeSlot(slot: Date): void {
             this.freeSlots.add(slot)
         },
-        removeFreeSlot(slot: Date) {
+        removeFreeSlot(slot: Date): void {
             this.freeSlots.delete(slot)
         }
     },
