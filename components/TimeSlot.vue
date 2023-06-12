@@ -7,9 +7,9 @@ const store = AppointmentStore();
 const isTaken = ref(false)
 const props = defineProps<{
     time: String
-    dayNumber: Number
+    day: Number
 }>()
-const date: Date = new Date("2021-01-0" + props.dayNumber + "T" + props.time + ":00")
+const date: Date = new Date("2021-01-0" + props.day + "T" + props.time + ":00")
 
 watch(isTaken, (state) => {
     if (state) {
